@@ -9,17 +9,16 @@ export class AppController {
   // Controller esponsible for incoming requests -> responses
   
   @Get()
-  // @Header('Content-Type', 'text/html')
   getHello1(): {name:string} {
     return {name: 'Max'}
   }
 
-  @Get("z")
+  @Get()
   getHello(@Param() ten:string): string {
     return this.appService.getHello(String(ten), "ga");
   }
 
-  @Get("ab*cd")
+  @Get()
   @HttpCode(400)
   getGoodbye(): string {
     return this.appService.getGoodbye();
@@ -38,20 +37,11 @@ export class AppController {
   // @Injectable() -> can be injected into other constructor
 
 
-  // dynamic routing
-  @Get("b/:id")
-  @HttpCode(204)
-  findAll(@Req() request: Request, @Query("testa") test): string {
-    return 'This action returns all cats'+test;
-  }
+  // // dynamic routing
+  // @Get("b/:id")
+  // @HttpCode(204)
+  // findAll(@Req() request: Request, @Query("testa") test): string {
+  //   return 'This action returns all cats'+test;
+  // }
 
-  @Put("d")
-  replace(): string {
-    return 'This action adds a new cat';
-  }
-
-  @Get(":id")
-  findOne(@Param() id:string): string {
-    return `This action returns a #${id} cat`;
-}
 }
